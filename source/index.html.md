@@ -10,7 +10,6 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
 
 search: true
 ---
@@ -449,7 +448,6 @@ Parameter | Default | Required | Description |
 --------- | ------- | -------- | ----------- |
 
 
-
 ## Version Run
 
 ```curl
@@ -637,3 +635,79 @@ curl -XGET -H "Content-type: application/json" 'https://mcapi.de/api/services/st
 Parameter | Default | Required | Description |
 --------- | ------- | -------- | ----------- |
 services  | -       | Yes      | The service you want to know the status of.
+
+# Votifier
+
+## NuVotifier
+
+```curl
+curl -XGET -H "Content-type: application/json" 'https://mcapi.de/api/voting/nu/192.168.2.70/8192/Yonas/f[...]u/M[...]B'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "meta": {
+    "status": 200,
+    "message": "Ok"
+  },
+  "data": {
+    "host": "192.168.2.70",
+    "port": 8192,
+    "response": "ok"
+  },
+  "cache": {
+    "stored": false,
+    "updated": {
+      "date": "2018-03-09 09:16:07.001891",
+      "timezone_type": 3,
+      "timezone": "UTC"
+    },
+    "expires": {
+      "date": "2018-03-09 09:16:07.001891",
+      "timezone_type": 3,
+      "timezone": "UTC"
+    }
+  }
+}
+```
+
+
+### HTTP Request
+
+`GET https://mcapi.de/api/voting/nu/{ip}/{port}/{identifier}/{token}/{publicKey}`
+
+### Query Parameters
+
+Parameter | Default | Required | Description |
+--------- | ------- | -------- | ----------- |
+host      | -       | Yes      | The host or IPv4/IPv6 address of the server. |
+port      | 25565   | No       | The port of the server. |
+identifier| -       | Yes      | The username of the voter. |
+token     | -       | Yes      | The token that exists in the config.yml of the NuVotifier plugin. |
+publicKey | -       | Yes      | Your public RSA key to encrypt the vote.   |
+
+
+# Image
+
+## Favicon
+
+```curl
+curl -XGET -H "Content-type: image/png" 'https://mcapi.de/api/image/favicon/play.hivemc.eu'
+```
+
+> <img src="images/favicon_example.png" alt="Favicon Example"/>
+
+
+
+### HTTP Request
+
+`GET https://mcapi.de/api/image/favicon/{host}[/{port}]`
+
+### Query Parameters
+
+Parameter | Default | Required | Description |
+--------- | ------- | -------- | ----------- |
+host      | -       | Yes      | The host or IPv4/IPv6 address of the server. |
+port      | 25565   | No       | The port of the server. |
